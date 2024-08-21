@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>food</title>
+   <link rel="stylesheet" href="/static/scripts/css/style.css">
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+   <!-- Custom CSS -->
+   <style>
+       .navbar{
+           background-color:#66b2b2;
+           position: fixed;
+           top: 0;
+           width: 100%;
+           z-index: 1000;
+       }
+       body {
+           background-color: #b2d8d8;
+       }
+       .hero {
+           background: url('https://source.unsplash.com/random/1600x900') no-repeat center center;
+           background-size: cover;
+           height: 100vh;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: white;
+           text-shadow: 2px 2px 4px #000000;
+           padding-top: 70px;
+       }
+       .hero h1 {
+           font-size: 4rem;
+       }
+       .btn-custom {
+           margin: 0 10px;
+           padding: 10px 20px;
+           font-size: 1.2rem;
+       }
+       .navbar-custom {
+           background-color: #66b2b2;
+          
+       }
+      
+   </style>
+  
+</head>
+
+
+<body >
+   <nav class="navbar navbar-expand-lg navbar-custom">
+       <a class="navbar-brand" href="/">SafeBite</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+           {% if user.is_authenticated %}
+           <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                   <a class="nav-link" href='fooddir'>Search</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href='select_allergens'>Change allergen</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href='userprofile'>User Profile</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href='accounts/logout'>Logout</a>
+               </li>
+           </ul>
+           {% else %}
+           <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                   <a class="nav-link" href='fooddir'>Search</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href='accounts/login'>Login</a>
+               </li>
+               <!-- <li class="nav-item">
+                   <a class="nav-link" href='accounts/register'>Register</a>
+               </li> -->
+           </ul>
+           {%endif%}
+       </div>
+   </nav>
+
+
+   {% block content %}
+  
+   {%endblock%}
+</body>
+</html>

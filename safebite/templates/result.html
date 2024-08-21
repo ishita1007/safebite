@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% extends 'base.html'%}
+{% block content%}
+<body>
+    <div class="container-fluid mt-5">
+    {% if yes %}
+    <div class="table-wrapper">
+        <h1>List of foods to try</h1>
+        <table>
+            <thead>
+                
+                <tr>
+                    <th>Name</th>
+                    <th>Ingredients</th>
+                    <th>Diet</th>
+                    <th>Flavor</th>
+                    <th>like/unlike</th>
+
+        
+                </tr>
+            </thead>
+            <tbody>
+                
+                    {% for s in yes %}
+                     
+                        <tr>
+                            <td>{{ s.0.item_name }}</td>
+                            <td>{{s.0.ingredient}}</td>
+                            <td>{{s.0.diet}}</td>
+                            <td>{{s.0.flavour}}</td>
+                            
+
+                            <td>{% if user.is_authenticated %}
+                                <form method="POST">
+                                    {% csrf_token %}
+                                
+                                  
+                                    <!-- <button type="submit" name="blogpost_id" value="{{s.id}}" class="btn btn-info">Unlike</button> -->
+                                  {% if s.1 %}
+                                    <button type="submit" name="blogpost_id" value="{{s.0.id}}" class="btn btn-info">Unlike</button>
+                                  {% else %}
+                                    <button type="submit" name="blogpost_id" value="{{s.0.id}}" class="btn btn-info">Like</button>
+                                  {% endif %}
+                                </form>
+                               
+                              {% else %}
+                                <a class="btn btn-outline-info" href='accounts/login'>Log in to like</a><br>
+                              {% endif %}
+                              <strong class="text-secondary">{{ s.0.number_of_likes }} Like{{ s.0.number_of_likes|pluralize }}</strong>
+                            </td> 
+                        </tr>
+                       
+                    {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    {%endif%}
+    {% if no %}
+    <div class="table-wrapper">
+        <h1>List of foods to avoid</h1>
+        <table>
+            <thead>
+                
+                <tr>
+                    <th>Name</th>
+                    <th>Ingredients</th>
+                    <th>Diet</th>
+                    <th>Flavor</th>
+        
+                </tr>
+            </thead>
+            <tbody>
+                
+                    {% for s in no %}
+                        <tr>
+                            <td>{{ s.0.item_name }}</td>
+                            <td>{{s.0.ingredient}}</td>
+                            <td>{{s.0.diet}}</td>
+                            <td>{{s.0.flavour}}</td>
+                        </tr>
+                    {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+        {%endif%}
+        <a href="{% url 'fooddir' %}">Go Back to search</a>
+
+    </div>
+
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/scripts/css/registerlogin.css">
+    <title>registration</title>
+</head>
+{% extends 'base.html'%}
+{% block content%}
+<body>
+   
+        <div class="container-fluid mt-5">
+        <div class="form-container">
+                
+     
+    <form action="register" method="post">  
+        <h2>Registration Form</h2>
+        {%csrf_token%}
+      
+        {{ form.as_p }}
+        <!-- <div class="form-group">
+        <label for="first_name">First name</label>
+        <input type="text" name="first_name" placeholder="First Name" ><br>
+        </div>
+        <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" placeholder="last Name" ><br>
+        </div>
+        <div class="form-group">
+        <label for="user_name">User Name</label>
+        <input type="text" name="user_name" placeholder="user Name" ><br>
+        </div>
+        <div class="form-group">
+        <label for="email">email</label>
+        <input type="email" name="email" placeholder="email" ><br>
+        </div>
+        <div class="form-group">
+        <label for="password1">Password</label>
+        <input type="password" name="password1" placeholder="password" ><br>
+        </div>
+        <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2" placeholder="confirm password" ><br>
+        </div>
+        <div>
+        {{ form.as_p }}
+        </div> -->
+        <div class="form-button">
+        <button type="submit">register</button>
+        </div>
+
+    </form>
+    
+   </div></div></div>
+    </div>
+    <div>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
+</html>
